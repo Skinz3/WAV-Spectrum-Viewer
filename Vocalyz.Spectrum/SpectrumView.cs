@@ -10,6 +10,8 @@ namespace Vocalyz.Spectrum
 {
     public class SpectrumView : Game
     {
+        public const string FILE = "song.wav";
+
         public const int WIDOW_WIDTH = 1300;
         public const int WINDOW_HEIGHT = 800;
 
@@ -42,7 +44,7 @@ namespace Vocalyz.Spectrum
 
             KeyboardManager.OnKeyPressed += OnKeyPressed;
 
-            spectrum = new DrawableSpectrum("a4.wav");
+            spectrum = new DrawableSpectrum(FILE);
             spectrum.Start();
         }
 
@@ -56,7 +58,6 @@ namespace Vocalyz.Spectrum
                     spectrum.Pause();
                     m_paused = true;
 
-                 
                 }
                 else
                 {
@@ -67,7 +68,7 @@ namespace Vocalyz.Spectrum
             if (obj == Keys.Back)
             {
                 spectrum.Dispose();
-                spectrum = new DrawableSpectrum("a4.wav");
+                spectrum = new DrawableSpectrum(FILE);
                 spectrum.Start();
             }
         }
@@ -86,7 +87,6 @@ namespace Vocalyz.Spectrum
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
             Debug.SpriteBatch.Begin();
             spectrum?.Draw();
             Debug.SpriteBatch.End();
